@@ -8,11 +8,12 @@ albedo_color = Color(0, 0.729412, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ii2ng"]
 
 [node name="Fish" type="StaticBody3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_bpa1v")
 surface_material_override/0 = SubResource("StandardMaterial3D_mi6gr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_ii2ng")
