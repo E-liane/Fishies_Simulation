@@ -5,7 +5,7 @@ extends Node3D
 
 @onready var main = get_node("/root/Main/")
 
-var nb_of_fishies : int = 5000 #SET UP THE NB OF FISHES
+var nb_of_fishies : int = 50 #SET UP THE NB OF FISHES
 
 var fish_scene : PackedScene = preload("res://Scenes/Fish.tscn")
 
@@ -46,8 +46,11 @@ func spawn_fish():
 	var spawn_point : Vector3 = direction * distance_from_the_center
 	
 	var fish : Node3D = fish_scene.instantiate()
-	fish.global_transform.origin = spawn_point
-
-	main.add_child(fish)
+	
+	main.add_child(fish) # ADD CHILD FIRST TO FORCE GODOT TO CREATE A EXISTING GLOBALS VALUES ( TO MODIFY MULTIPLE GLOBALS VALUES THEN )
+	
+	fish.global_rotation = Vector3(0, randf_range(0.0, 360.0), 0)
+	fish.global_position = spawn_point
+	
 	
 	print(spawn_point)
