@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4ji5ttvptwwq"]
+[gd_scene load_steps=6 format=3 uid="uid://d4ji5ttvptwwq"]
+
+[ext_resource type="Script" uid="uid://dj36eevomj8fm" path="res://Scripts/fish.gd" id="1_15fnf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bpa1v"]
 
@@ -11,6 +13,8 @@ albedo_color = Color(0, 0.729412, 1, 1)
 points = PackedVector3Array(0, 0, 0, 0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, -0.5, -0.5, -1, 0.5)
 
 [node name="Fish" type="StaticBody3D"]
+script = ExtResource("1_15fnf")
+speed = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
