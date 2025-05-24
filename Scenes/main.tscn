@@ -1,22 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8j7b0vqxgu1x"]
+[gd_scene load_steps=5 format=3 uid="uid://c8j7b0vqxgu1x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_rlixt"]
+[ext_resource type="Script" uid="uid://csmn5hr03dwtb" path="res://Scripts/center_limit.gd" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://cdo323bp1tr5" path="res://Scripts/edge_limit.gd" id="2_8gbba"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8gbba"]
 radius = 5.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7u77a"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_bo1nx"]
 radius = 25.0
 
 [node name="Main" type="Node3D"]
 
 [node name="Center_Limit" type="Area3D" parent="."]
+priority = 1
+script = ExtResource("1_bo1nx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Center_Limit"]
-shape = SubResource("SphereShape3D_rlixt")
+shape = SubResource("SphereShape3D_8gbba")
 
 [node name="Edge_Limit" type="Area3D" parent="."]
+script = ExtResource("2_8gbba")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Edge_Limit"]
-shape = SubResource("SphereShape3D_7u77a")
+shape = SubResource("SphereShape3D_bo1nx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.922214, 0.386679, 0, -0.386679, 0.922214, 0, 15.4828, 34.807)
+
+[connection signal="body_entered" from="Center_Limit" to="Center_Limit" method="_on_body_entered"]
+[connection signal="body_exited" from="Center_Limit" to="Center_Limit" method="_on_body_exited"]
+[connection signal="body_entered" from="Edge_Limit" to="Edge_Limit" method="_on_body_entered"]
+[connection signal="body_exited" from="Edge_Limit" to="Edge_Limit" method="_on_body_exited"]
