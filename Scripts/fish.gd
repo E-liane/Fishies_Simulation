@@ -10,8 +10,7 @@ var noise_offset := 0.0
 @export var dispertion : int #LITTLE INT BIG DISPerTION
 @export var attract_by_center : int #LITTLE INT BIG ATTRACT
 @export var fishies_influence : bool
-
-var state : String = "in_school" # "in_school", "too_far", "too_close"
+@export var nb_fish_max_in_view : int = 2
 
 var fishies_in_view : Array[Node3D] = []
 
@@ -28,11 +27,8 @@ func _process(delta):
 	var forward = -transform.basis.z
 	position += forward * speed * delta
 
-func change_state(new_state : String):
-	state = new_state
-
 func _on_eyes_body_entered(body):
-	if (body != self and fishies_in_view.size() < 2):
+	if (body != self and fishies_in_view.size() < nb_fish_max_in_view):
 		fishies_in_view.append(body)
 
 func _on_eyes_body_exited(body):

@@ -43,11 +43,7 @@ func spawn_fish():
 	fish.global_position = spawn_point
 	
 func _process(delta):
-	
-	timer += delta
-	if (timer >= 0.05):
-		timer = 0
-		get_tree().call_group("Fish", "change_direction")
+	get_tree().call_group("Fish", "change_direction")
 
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 	
