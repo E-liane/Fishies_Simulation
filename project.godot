@@ -19,6 +19,23 @@ config/icon="res://icon.svg"
 
 World="*res://Scripts/world.gd"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [dotnet]
 
 project/assembly_name="Fish_School_Simulation"
+
+[editor]
+
+movie_writer/disable_vsync=true
+
+[global_group]
+
+Fish=""
+
+[physics]
+
+3d/run_on_separate_thread=true
+3d/physics_engine="Jolt Physics"

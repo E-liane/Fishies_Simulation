@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://daoq5ux1kh5ll"]
+
+[ext_resource type="PackedScene" uid="uid://cm38dx217jm72" path="res://Assets/fish.fbx" id="1_wmgwa"]
+
+[node name="fish" instance=ExtResource("1_wmgwa")]
