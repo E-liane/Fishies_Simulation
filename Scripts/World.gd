@@ -7,7 +7,7 @@ extends Node3D
 
 @onready var main = get_node("/root/Main/")
 
-var nb_of_fishies : int = 25 #SET UP THE NB OF FISHES
+var nb_of_fishies : int = 50 #SET UP THE NB OF FISHES
 
 var fish_scene : PackedScene = preload("res://Scenes/Fish.tscn")
 

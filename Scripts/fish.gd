@@ -30,7 +30,7 @@ func change_state(new_state : String):
 	state = new_state
 
 func _on_eyes_body_entered(body):
-	if (body != self and fishies_in_view.size() < 1):
+	if (body != self and fishies_in_view.size() < 5):
 		fishies_in_view.append(body)
 
 func _on_eyes_body_exited(body):
@@ -48,7 +48,7 @@ func _on_timer_timeout():
 	var new_direction : Vector3 = Vector3(0, 0, 0)
 	
 	for fish_in_view in fishies_in_view:
-		new_direction += (fish_in_view.position - position)
+		new_direction += -fish_in_view.transform.basis.z
 	
 	if (new_direction == Vector3.ZERO):
 		look_at(global_transform.origin + direction, Vector3.UP)
