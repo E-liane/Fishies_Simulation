@@ -3,9 +3,11 @@ extends Node3D
 @onready var center_limit : Area3D = get_node("/root/Main/Center_Limit")
 @onready var edge_limit : Area3D = get_node("/root/Main/Edge_Limit")
 
+@onready var fps_label : Label = get_node("/root/Main/fps_label")
+
 @onready var main = get_node("/root/Main/")
 
-var nb_of_fishies : int = 1 #SET UP THE NB OF FISHES
+var nb_of_fishies : int = 25 #SET UP THE NB OF FISHES
 
 var fish_scene : PackedScene = preload("res://Scenes/Fish.tscn")
 
@@ -49,8 +51,8 @@ func spawn_fish():
 	
 	main.add_child(fish) # ADD CHILD FIRST TO FORCE GODOT TO CREATE A EXISTING GLOBALS VALUES ( TO MODIFY MULTIPLE GLOBALS VALUES THEN )
 	
-	fish.global_rotation = Vector3(0, randf_range(0.0, 360.0), 0)
+	fish.rotation = Vector3(0, randf_range(0.0, 360.0), 0)
 	fish.global_position = spawn_point
 	
-	
-	print(spawn_point)
+func _process(delta):
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())

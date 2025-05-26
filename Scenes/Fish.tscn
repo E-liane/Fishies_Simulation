@@ -1,34 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4ji5ttvptwwq"]
+[gd_scene load_steps=7 format=3 uid="uid://d4ji5ttvptwwq"]
 
 [ext_resource type="Script" uid="uid://dj36eevomj8fm" path="res://Scripts/fish.gd" id="1_15fnf"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_bpa1v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15fnf"]
+albedo_color = Color(0.243137, 0.270588, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mi6gr"]
-albedo_color = Color(0, 0.729412, 1, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_15fnf"]
+material = SubResource("StandardMaterial3D_15fnf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ii2ng"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_71gbd"]
-points = PackedVector3Array(0, 0, 0, 0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, -0.5, -0.5, -1, 0.5)
+points = PackedVector3Array(0, 0, 0, 7.5, -2.5, 7.5, 7.5, -2.5, -7.5, -7.5, -2.5, -7.5, -7.5, -2.5, 7.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_15fnf"]
+radius = 20.0
 
 [node name="Fish" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_15fnf")
+noise_speed = 25.0
+turn_amount = 1.0
 speed = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("BoxMesh_bpa1v")
-surface_material_override/0 = SubResource("StandardMaterial3D_mi6gr")
+mesh = SubResource("BoxMesh_15fnf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_ii2ng")
 
 [node name="Eyes" type="Area3D" parent="."]
-collision_layer = 2
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.611148)
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Eyes"]
 transform = Transform3D(-1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_71gbd")
+disabled = true
+
+[node name="Eyes2" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Eyes2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 11.7749, 0, 5.14697e-07)
+shape = SubResource("SphereShape3D_15fnf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="Eyes" to="." method="_on_eyes_body_entered"]
+[connection signal="body_exited" from="Eyes" to="." method="_on_eyes_body_exited"]
+[connection signal="body_entered" from="Eyes2" to="." method="_on_eyes_body_entered"]
+[connection signal="body_exited" from="Eyes2" to="." method="_on_eyes_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
