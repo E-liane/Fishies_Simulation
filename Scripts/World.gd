@@ -6,7 +6,7 @@ extends Node3D
 
 @onready var main = get_node("/root/Main/")
 
-var nb_of_fishies : int = 150 #SET UP THE NB OF FISHES
+@export var nb_of_fishies : int = 100 #SET UP THE NB OF FISHES
 
 var fish_scene : PackedScene = preload("res://Scenes/Fish.tscn")
 
@@ -43,7 +43,10 @@ func spawn_fish():
 	fish.global_position = spawn_point
 	
 func _process(delta):
-	get_tree().call_group("Fish", "change_direction")
+	timer += delta
+	if (timer >= 0.01): # TO AVOID TOO MUCH EXECUTION + TO SLOW THE FISHIES TURN
+		timer = 0
+		get_tree().call_group("Fish", "change_direction")
 
 	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 	
