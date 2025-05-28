@@ -1,36 +1,25 @@
 # 🐟 Fish School Simulation - Godot Engine
 
-This project is a real-time fish school (shoal) simulation made with the Godot Engine. Inspired by the natural flocking behavior of fish, it simulates lifelike group movement using simple behavioral rules.
+This project is a real-time fish school (shoal) simulation built using the **Godot Engine**.  
+It mimics the natural flocking behavior of fish with lifelike group movement based on simple rules.
+
+---
 
 ## 🎮 Demo
 
-Each fish is an autonomous agent that follows three core rules:
-- **Separation**: avoid crowding neighbors
-- **Alignment**: steer towards average heading of neighbors
-- **Cohesion**: move towards the average position of neighbors
+Each fish is an autonomous agent that follows three core behaviors:
 
-The combination of these behaviors creates a natural, emergent group motion.
+- **Separation**: Avoid crowding close neighbors  
+- **Alignment**: Match the direction of nearby fish  
+- **Cohesion**: Move toward the center of the group  
 
-https://user-images.githubusercontent.com/your-demo-link.gif
+The combination of these rules produces natural, emergent movement patterns.
 
 ---
 
 ## 🔧 Features
 
-- 🧠 Autonomous agent behavior (Boids-like)
-- 🎯 Realistic flocking with adjustable parameters
-- ⚡ Optimized for real-time performance
-- 🛠️ Modular GDScript for easy customization
-- 📏 Editor-exposed variables (speed, perception radius, etc.)
-
----
-
-## 🐍 How It Works
-
-The simulation is based on simple vector math for each fish:
-
-```gdscript
-var velocity = Vector2.ZERO
-velocity += separation()
-velocity += alignment()
-velocity += cohesion()
+- 🧠 Boids-like autonomous behavior  
+- ⚙️ Adjustable parameters (speed, perception radius, etc.) exposed in the editor  
+- 🛠️ Clean, modular GDScript for customization  
+- 🔄 Easily extensible for new behaviors (predators, obstacles, etc.)
